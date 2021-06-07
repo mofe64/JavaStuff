@@ -27,6 +27,8 @@ public class Main {
             }
             catch (AlreadyOccupiedException e) {
                 System.out.println("That position is already occupied");
+            } catch (MoveOutOfBoundsException e) {
+                e.printStackTrace();
             }
         }
     }

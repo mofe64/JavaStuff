@@ -19,7 +19,10 @@ public class Game {
         this.lastValuePlayedWasX = false;
     }
 
-    public void makeMove(int gridPosition) throws GameOverException, BoardFullException, AlreadyOccupiedException {
+    public void makeMove(int gridPosition) throws GameOverException, BoardFullException, AlreadyOccupiedException, MoveOutOfBoundsException {
+        if (gridPosition < 1 || gridPosition > 9) {
+            throw new MoveOutOfBoundsException("position must be between 1 and 9");
+        }
         if (boardFull) {
             throw new BoardFullException();
         }
@@ -35,10 +38,13 @@ public class Game {
             lastValuePlayedWasX = false;
         } else {
             gameBoard.getArray()[row][column] = Value.X;
-            lastValuePlayedWasX= true;
+            lastValuePlayedWasX = true;
         }
+
         if (isGameWon()) {
-            throw new GameOverException();
+            gameWon = true;
+            String winner = (lastValuePlayedWasX) ? "x" : "0";
+            throw new GameOverException("Game over " + winner + "won");
         }
         if (movesMade < 9) {
             movesMade++;
@@ -95,7 +101,16 @@ public class Game {
         return false;
     }
 
-    public void displayBoard(){
+    public Value[][] getBoard() {
+        return gameBoard.getArray();
+    }
+
+    public void displayBoard() {
         gameBoard.displayBoard();
     }
+
+    public boolean isWon() {
+        return gameWon;
+    }
 }
+
