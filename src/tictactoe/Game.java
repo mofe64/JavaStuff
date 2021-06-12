@@ -75,7 +75,7 @@ public class Game {
             }
         }
         Set<Value> leftDiagonalValues = new HashSet<>();
-        for (int i = 0; i < array.length; i++) {
+    for (int i = 0; i < array.length; i++) {
             int row = i;
             int column = i;
             leftDiagonalValues.add(array[row][column]);
