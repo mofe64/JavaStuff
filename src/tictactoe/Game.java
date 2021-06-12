@@ -75,7 +75,7 @@ public class Game {
             }
         }
         Set<Value> leftDiagonalValues = new HashSet<>();
-    for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             int row = i;
             int column = i;
             leftDiagonalValues.add(array[row][column]);
@@ -85,13 +85,9 @@ public class Game {
             return true;
         }
 
-        int row = 2;
-        int column = 0;
         Set<Value> rightDiagonalValues = new HashSet<>();
-        for (; row >= 0; row--) {
-            for (; column < array.length; column++) {
-                rightDiagonalValues.add(array[row][column]);
-            }
+        for(int row =2, column =0; row >= 0 && column < array.length; row--,column++){
+            rightDiagonalValues.add(array[row][column]);
         }
         if (!rightDiagonalValues.contains(Value.EMPTY)
                 && leftDiagonalValues.size() == 1) {
