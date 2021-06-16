@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Game {
-    private Board gameBoard;
+    private final Board gameBoard;
     private boolean gameWon;
     private boolean boardFull;
     boolean lastValuePlayedWasX;
@@ -50,6 +50,7 @@ public class Game {
             movesMade++;
         }
         if (movesMade == 9) {
+
             boardFull = true;
         }
     }
@@ -89,12 +90,8 @@ public class Game {
         for(int row =2, column =0; row >= 0 && column < array.length; row--,column++){
             rightDiagonalValues.add(array[row][column]);
         }
-        if (!rightDiagonalValues.contains(Value.EMPTY)
-                && leftDiagonalValues.size() == 1) {
-            return true;
-        }
-
-        return false;
+        return !rightDiagonalValues.contains(Value.EMPTY)
+                && leftDiagonalValues.size() == 1;
     }
 
     public Value[][] getBoard() {
